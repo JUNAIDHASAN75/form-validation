@@ -25,7 +25,7 @@ const Validation = () => {
                     <input className="input w-full border-2 p-4 rounded-md my-4" type="email" placeholder="Email" {...register('email', { required: true })} />
                     {errors.email && <span className='text-orange-600'>Email is required</span>}
                 </div>
-                
+                {/* password field */}
                 <div className="flex flex-col my-4">
                     <label htmlFor="Name">
                         <span className="text-xl font-normal">Password</span>
@@ -41,23 +41,28 @@ const Validation = () => {
                     {errors.password?.type === 'maxLength' && <p className='text-red-600' role="alert">Password must be less than characters</p>}
                     {errors.password?.type === 'pattern' && <p className='text-red-600' role="alert">Password must have one uppercase,one lowercase, one number and one special character</p>}
                 </div>
-
+                {/* confirm password field */}
                 <div className="flex flex-col my-4">
                     <label htmlFor="Name">
                         <span className="text-xl font-normal">Confirm Password</span>
                     </label>
-                    <input className="input w-full border-2 p-4 rounded-md my-4" type="password" placeholder="Confirm Password" 
-                    {...register('confirmPassword',{
-                        required: true,validate:(value)=> value === watch('password') || 'the password do not match'
-                    })}
+                    <input className="input w-full border-2 p-4 rounded-md my-4" type="password" placeholder="Confirm Password"
+                        {...register('confirmPassword', {
+                            required: true, validate: (value) => value === watch('password') || 'the password do not match'
+                        })}
                     />
                     {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
                 </div>
+                {/* AutoComplete field */}
                 <div className="flex flex-col my-4">
                     <label htmlFor="Name">
-                        <span className="text-xl font-normal">Name</span>
+                        <span className="text-xl font-normal">Gender</span>
                     </label>
-                    <input className="input w-full border-2 p-4 rounded-md my-4" type="text" placeholder="Name" />
+                    <select {...register("gender",{required:true})}>
+                        <option value="female">female</option>
+                        <option value="male">male</option>
+                        <option value="other">other</option>
+                    </select>
                 </div>
                 <div className=" my-4">
                     <input className="cursor-pointer bg-purple-900 text-white text-xl px-4 py-2 rounded-md" type="submit" value="SUBMIT" />
